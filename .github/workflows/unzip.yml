@@ -1,0 +1,37 @@
+name: Auto Unzip to Root
+on:
+  # 上传zip文件时自动触发
+  push:
+    paths: ["**.zip"]
+  # 支持手动触发（方便测试）
+  workflow_dispatch:
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    # 赋予完整写入权限，避免推送失败
+    permissions: write-all
+    steps:
+      # 1. 检出仓库代码
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. 安装unzip工具（防止服务器无该命令）
+      - name: Install Unzip Tool
+        run: sudo apt-get update && sudo apt-get install -y unzip
+
+      # 3. 解压所有zip文件到仓库根目录
+      - name: Unzip Files to Root
+        run: find . -name "*.zip" -exec unzip -o {} -d ./ \;
+
+      # 4. 提交解压后的文件（作者改为你的信息）
+      - name: Commit and Push
+        run: |
+          git config --global user.name "yousangbo"
+          git config --global user.email "vip123456_1@qq.com"
+          git add .
+          # 有新文件才提交，无变化则跳过
+          git commit -m "Auto unzip ZIP files to root directory" || echo "No files to commit"
+          git push origin main
