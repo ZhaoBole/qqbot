@@ -5,9 +5,10 @@
 ## 核心信息
 - 开发者：桑帛（忆安）
 - 官方交流群：516666275
-- 核心API地址：https://api.lolimi.cn
+- 核心API地址：
+https://api.lolimi.cn
 - 公共词库仓库：
--https://api.lolimi.cn/qqbot/
+https://api.lolimi.cn/qqbot/
 （可自由上传自定义词库，也能下载他人共享词库）
 - 框架介绍视频：【QQ官方机器人bot管理系统php框架-写的我好累终于也算是写完了啊哈哈哈哈-哔哩哔哩】https://b23.tv/D5pVysd
 - 合规声明：严禁使用本项目开发违规、违法用途的机器人，违者后果自负
